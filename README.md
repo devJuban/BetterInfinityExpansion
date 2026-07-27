@@ -20,6 +20,9 @@
 ## Features Added
 - Mineral blocks in Singularity Constructor
 
+# Known Issues
+- When using mineral blocks, and then breaking the singularity constructor, it doesn't drop the mineral block (drops the ingot/mineral).
+
 # Credits
 @Riley31415 - Creating the original InfinityExpansion
 
