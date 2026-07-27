@@ -1,0 +1,26 @@
+# BetterInfinityExpansion
+
+## Items Added
+- Void Category
+- Void Void Harvester
+- Void Singularity Constructor
+- Void Cobble Generator
+- Void Dust Extractor
+- Void Ingot Former
+- Void Block
+- Advanced Void Harvester
+- Advanced Singularity Constructor
+- Advanced Dust Extractor
+- Advanced Ingot Former
+- Warden Data Card
+- Netherite Oscillator
+- Coal Oscillator
+- Gold Oscillator
+
+## Features Added
+- Mineral blocks in Singularity Constructor
+
+# Credits
+@Riley31415 - Creating the original InfinityExpansion
+
+@GuizhanCraft - Inspiration for more Advanced and Void machines
