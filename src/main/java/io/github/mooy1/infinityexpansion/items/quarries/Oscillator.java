@@ -52,5 +52,4 @@ public final class Oscillator extends SlimefunItem {
         OSCILLATORS.put(getId(), this);
         this.chance = chance;
     }
-
 }
