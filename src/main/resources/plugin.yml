@@ -9,7 +9,7 @@ version: ${project.version}
 api-version: 1.16
 
 commands:
-  infinityexpansion:
+  betterinfinityexpansion:
     description: Use /infinityexpansion help for a list of commands
     usage: /infinityexpansion <subcommand>
     aliases: [ie, ix, infinity]
