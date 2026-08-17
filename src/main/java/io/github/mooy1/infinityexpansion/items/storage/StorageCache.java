@@ -75,7 +75,7 @@ public final class StorageCache {
     @Setter
     private int amount;
 
-    StorageCache(StorageUnit storageUnit, BlockMenu menu) {
+    public StorageCache(StorageUnit storageUnit, BlockMenu menu) {
         this.storageUnit = storageUnit;
         this.menu = menu;
 
@@ -502,4 +502,47 @@ public final class StorageCache {
         }
     }
 
+    /**
+     * Remove the amount from the storage unit
+     * If the remove amount is less than 0 it will empty the unit
+     */
+    public void remove(int amount) {
+        if (amount > this.amount) {
+            this.amount = 0;
+
+        } else {
+            this.amount -= amount;
+        }
+    }
+
+    /**
+     * Add the amount into the storage unit
+     * If the add amount is greater than the max amount it will max the unit
+     */
+    public void add(int amount) {
+        this.amount += Math.min(this.storageUnit.max, amount);
+    }
+
+    public void add(int amount, Material input) {
+        if (this.material == input) {
+            this.amount += amount;
+        }
+    }
+
+    /**
+     * Sets the amount into the storage unit
+     * If the set amount is greater than the max amount it will max the unit
+     */
+    public void set(int amount) {
+        this.amount = Math.min(this.storageUnit.max, amount);
+    }
+
+    public int get() {
+        return this.amount;
+    }
+
+    public ItemStack[] getContents() {
+        return new ItemStack[] {
+                new ItemStack(this.material, get())};
+    }
 }
