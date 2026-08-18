@@ -187,12 +187,8 @@ public final class StorageUnit extends MenuBlock implements DistinctiveItem {
         this.caches.get(b.getLocation()).reloadData();
     }
 
+    @Nullable
     public StorageCache getCache(Location location) {
-
-        if (this.caches.get(location) == null){
-            this.caches.put(location, new StorageCache(this, BlockStorage.getInventory(location)));
-        }
-
         return this.caches.get(location);
     }
 

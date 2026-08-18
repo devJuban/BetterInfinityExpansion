@@ -7,11 +7,9 @@ import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.Map;
+import javax.annotation.Nullable;
 
 public class StorageUnitAPI {
-    private static final Map<Location, StorageCache> caches = new HashMap<>();
 
 
     public static int getAmountOfItems(@Nonnull Block b){
@@ -51,14 +49,7 @@ public class StorageUnitAPI {
     }
 
     public static StorageUnit getUnit(@Nonnull Location l){
-        StorageUnit storageUnit = (StorageUnit) BlockStorage.check(l);
-        BlockMenu menu = BlockStorage.getInventory(l);
-
-        if (caches.get(l) == null){
-            caches.put(l, new StorageCache(storageUnit, menu));
-        }
-
-        return storageUnit;
+        return (StorageUnit) BlockStorage.check(l);
     }
 
     public static boolean isUnit(@Nonnull Block b){
