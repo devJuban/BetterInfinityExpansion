@@ -75,7 +75,7 @@ public final class StorageCache {
     @Setter
     private int amount;
 
-    public StorageCache(StorageUnit storageUnit, BlockMenu menu) {
+    StorageCache(StorageUnit storageUnit, BlockMenu menu) {
         this.storageUnit = storageUnit;
         this.menu = menu;
 
@@ -544,5 +544,10 @@ public final class StorageCache {
     public ItemStack[] getContents() {
         return new ItemStack[] {
                 new ItemStack(this.material, get())};
+    }
+
+    public void emptyUnit(){
+        this.setEmpty();
+        menu.replaceExistingItem(OUTPUT_SLOT, new ItemStack(Material.AIR));
     }
 }

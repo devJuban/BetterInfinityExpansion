@@ -1,10 +1,8 @@
 package io.github.mooy1.infinityexpansion.items.storage;
 
-import io.github.mooy1.infinityexpansion.InfinityExpansion;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
@@ -13,11 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StorageUnitAPI {
-
-    private static final NamespacedKey ITEM_KEY = InfinityExpansion.createKey("item");
-    private static final NamespacedKey AMOUNT_KEY = InfinityExpansion.createKey("stored");
-
     private static final Map<Location, StorageCache> caches = new HashMap<>();
+
 
     public static int getAmountOfItems(@Nonnull Block b){
         return getAmountOfItems(b.getLocation());
@@ -25,7 +20,7 @@ public class StorageUnitAPI {
 
     public static int getAmountOfItems(@Nonnull Location l){
         if (isUnit(l)){
-            return caches.get(l).get();
+            return getUnit(l).getCache(l).get();
         }
 
         return 0;
@@ -37,7 +32,7 @@ public class StorageUnitAPI {
 
     public static void withdrawFromUnit(@Nonnull Location l, int amount){
         if (isUnit(l)) {
-            caches.get(l).remove(amount);
+            getUnit(l).getCache(l).remove(amount);
         }
     }
 
@@ -47,7 +42,7 @@ public class StorageUnitAPI {
 
     public static void emptyUnit(@Nonnull Location l){
         if (isUnit(l)) {
-            caches.get(l).set(0);
+            getUnit(l).getCache(l).emptyUnit();
         }
     }
 
@@ -77,6 +72,6 @@ public class StorageUnitAPI {
     public static ItemStack[] getContents(@Nonnull Block b) {return getContents(b.getLocation());};
 
     public static ItemStack[] getContents(@Nonnull Location l) {
-        return caches.get(l).getContents();
+        return getUnit(l).getCache(l).getContents();
     }
 }
