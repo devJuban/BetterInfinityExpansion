@@ -1,21 +1,20 @@
 package io.github.mooy1.infinityexpansion.items.storage;
 
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+
 
 public class StorageUnitAPI {
 
+    // You can safely ignore all warnings as isUnit() checks if the storage is a unit (and not null)
 
     public static int getAmountOfItems(@Nonnull Block b){
         return getAmountOfItems(b.getLocation());
     }
-
     public static int getAmountOfItems(@Nonnull Location l){
         if (isUnit(l)){
             return getUnit(l).getCache(l).get();
@@ -27,7 +26,6 @@ public class StorageUnitAPI {
     public void withdrawFromUnit(@Nonnull Block b, int amount){
         withdrawFromUnit(b.getLocation(), amount);
     }
-
     public static void withdrawFromUnit(@Nonnull Location l, int amount){
         if (isUnit(l)) {
             getUnit(l).getCache(l).remove(amount);
@@ -37,7 +35,6 @@ public class StorageUnitAPI {
     public static void emptyUnit(@Nonnull Block b){
         emptyUnit(b.getLocation());
     }
-
     public static void emptyUnit(@Nonnull Location l){
         if (isUnit(l)) {
             getUnit(l).getCache(l).emptyUnit();
@@ -47,7 +44,6 @@ public class StorageUnitAPI {
     public static StorageUnit getUnit(@Nonnull Block b){
         return getUnit(b.getLocation());
     }
-
     public static StorageUnit getUnit(@Nonnull Location l){
         return (StorageUnit) BlockStorage.check(l);
     }
@@ -55,14 +51,12 @@ public class StorageUnitAPI {
     public static boolean isUnit(@Nonnull Block b){
         return isUnit(b.getLocation());
     }
-
     public static boolean isUnit(@Nonnull Location l) {
         return BlockStorage.check(l) instanceof io.github.mooy1.infinityexpansion.items.storage.StorageUnit;
     }
 
-    public static ItemStack[] getContents(@Nonnull Block b) {return getContents(b.getLocation());};
-
-    public static ItemStack[] getContents(@Nonnull Location l) {
+    public static ItemStack getContents(@Nonnull Block b) {return getContents(b.getLocation());};
+    public static ItemStack getContents(@Nonnull Location l) {
         return getUnit(l).getCache(l).getContents();
     }
 }

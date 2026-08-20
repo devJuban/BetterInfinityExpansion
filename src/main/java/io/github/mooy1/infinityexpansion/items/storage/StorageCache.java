@@ -29,6 +29,8 @@ import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 
+import javax.annotation.Nullable;
+
 import static io.github.mooy1.infinityexpansion.items.storage.StorageUnit.DISPLAY_KEY;
 import static io.github.mooy1.infinityexpansion.items.storage.StorageUnit.DISPLAY_SLOT;
 import static io.github.mooy1.infinityexpansion.items.storage.StorageUnit.EMPTY_KEY;
@@ -537,15 +539,28 @@ public final class StorageCache {
         this.amount = Math.min(this.storageUnit.max, amount);
     }
 
+    /**
+     * Get the amount of items in the storage unit
+     * @return The amount of items in the storage unit
+     */
     public int get() {
-        return this.amount;
+        int itemAmount = (menu.getItemInSlot(OUTPUT_SLOT) == null) ? 0 : menu.getItemInSlot(OUTPUT_SLOT).getAmount();
+        return (this.amount + itemAmount);
     }
 
-    public ItemStack[] getContents() {
-        return new ItemStack[] {
-                new ItemStack(this.material, get())};
+    /**
+     * Get the contents of the storage unit
+     * @return An ItemStack with the stored amount
+     */
+    @Nullable
+    public ItemStack getContents() {
+        if (this.material == null) return null;
+        return new ItemStack(this.material, get());
     }
 
+    /**
+     * Empties the storage unit
+     */
     public void emptyUnit(){
         this.setEmpty();
         menu.replaceExistingItem(OUTPUT_SLOT, new ItemStack(Material.AIR));
