@@ -1,12 +1,14 @@
 package io.github.mooy1.infinityexpansion.items.storage;
 
-import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
+import jdk.internal.net.http.common.Pair;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.block.data.type.WallSign;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.AbstractMap.SimpleEntry;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -74,26 +76,26 @@ public class StorageUnitAPI {
      * @param b The sign or StorageUnit
      * @return The StorageUnit and Location as a Pair
      */
-    public static Pair<StorageUnit, Location> getUnitBySign(Block b) { return getUnitBySign(b.getLocation()); }
+    public static SimpleEntry<StorageUnit, Location> getUnitBySign(Block b) { return getUnitBySign(b.getLocation()); }
     /**
      * Gets the StorageUnit by the sign
      * @param l The location of the sign or StorageUnit
      * @return The StorageUnit and Location as a Pair
      */
-    public static Pair<StorageUnit, Location> getUnitBySign(Location l) {
+    public static SimpleEntry<StorageUnit, Location> getUnitBySign(Location l) {
         Block b = l.getBlock();
-        if (isUnit(l)) return new Pair<>(getUnit(l), l);
+        if (isUnit(l)) return new SimpleEntry<>(getUnit(l), l);
 
         if (b.getBlockData() instanceof WallSign){
             WallSign wallSign = (WallSign) b.getBlockData();
             Block unitBlock = b.getRelative((wallSign.getFacing().getOppositeFace()));
             if (isUnit(unitBlock)){
-                return new Pair<>(getUnit(unitBlock), unitBlock.getLocation());
+                return new SimpleEntry<>(getUnit(unitBlock), unitBlock.getLocation());
             }
         } else if (b.getState() instanceof Sign){
             Block unitBlock = b.getRelative(0,-1,0);
             if (isUnit(unitBlock)){
-                return new Pair<>(getUnit(unitBlock), unitBlock.getLocation());
+                return new SimpleEntry<>(getUnit(unitBlock), unitBlock.getLocation());
             }
         }
 
