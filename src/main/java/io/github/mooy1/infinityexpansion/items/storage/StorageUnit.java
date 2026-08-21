@@ -230,5 +230,4 @@ public final class StorageUnit extends MenuBlock implements DistinctiveItem {
     public boolean canStack(@Nonnull ItemMeta sfItemMeta, @Nonnull ItemMeta itemMeta) {
         return sfItemMeta.getPersistentDataContainer().equals(itemMeta.getPersistentDataContainer());
     }
-
 }

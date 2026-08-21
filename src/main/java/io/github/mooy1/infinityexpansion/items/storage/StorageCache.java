@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -390,6 +391,7 @@ public final class StorageCache {
     private static boolean checkWallSign(Block sign, Block block) {
         return SlimefunTag.WALL_SIGNS.isTagged(sign.getType())
                 && sign.getRelative(((WallSign) sign.getBlockData()).getFacing().getOppositeFace()).equals(block);
+
     }
 
     private void setStored(ItemStack input) {
@@ -564,5 +566,13 @@ public final class StorageCache {
     public void emptyUnit(){
         this.setEmpty();
         menu.replaceExistingItem(OUTPUT_SLOT, new ItemStack(Material.AIR));
+    }
+
+    public Block getBlock(){
+        return getLocation().getBlock();
+    }
+
+    public Location getLocation(){
+        return this.menu.getLocation();
     }
 }
